@@ -1,0 +1,4 @@
+interface:
+  display_name: "手作叙事画风"
+  short_description: "将故事编译为可复用、可校验并保持系列一致的原创手作画风提示词"
+  default_prompt: "使用 $handmade-story-visuals 为这段故事选择合适的原创手作画风，并输出可直接生图的提示词。"
