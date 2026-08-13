@@ -1,5 +1,5 @@
 {
-  "catalog_version": "1.0.0",
+  "catalog_version": "1.1.0",
   "default_style": "postcard-storybook",
   "styles": [
     {
@@ -10,7 +10,7 @@
       "summary": "像随身速写本里刚画下的一刻，以轻重不一的石墨线和大片纸面留白承载克制情绪。",
       "best_for": ["人物回忆", "安静独处", "生活片段", "含蓄情绪"],
       "avoid_for": ["高密度商品展示", "霓虹派对", "需要大面积饱和色的场景"],
-      "recommend_keywords": ["回忆", "独处", "安静", "告别", "想念", "日记", "铅笔", "克制", "旧时光"],
+      "recommend_keywords": ["回忆", "独处", "安静", "告别", "想念", "日记", "铅笔", "克制", "旧时光", "memory", "memories", "solitude", "quiet", "farewell", "longing", "diary", "graphite", "pencil sketch", "nostalgia"],
       "recipe": {
         "medium": "自然白素描纸上的石墨铅笔与少量擦笔灰，不呈现数码喷枪质感",
         "line": "轮廓由短促试探线叠出，关键表情略重，远处物体只保留稀疏结构线",
@@ -31,7 +31,7 @@
       "summary": "把普通街巷画成有温度的小型舞台，用不透明水粉块面和朴素透视讲清人与环境的关系。",
       "best_for": ["邻里故事", "城市日常", "小店与街道", "多人互动"],
       "avoid_for": ["纯信息图", "精密机械结构", "空无一人的极简画面"],
-      "recommend_keywords": ["街道", "邻居", "小店", "公交站", "菜市场", "社区", "城市", "回家", "路口", "日常"],
+      "recommend_keywords": ["街道", "邻居", "小店", "公交站", "菜市场", "社区", "城市", "回家", "路口", "日常", "street", "neighborhood", "shopfront", "bus stop", "market", "community", "city", "crossroads", "everyday life", "rainy night"],
       "recipe": {
         "medium": "有覆盖力的水粉颜料画在略粗糙的灰白纸上，边缘可见干刷和二次覆盖",
         "line": "不用统一黑描边，以深色块和少量彩铅结构线共同定形",
@@ -52,7 +52,7 @@
       "summary": "用一条看似不离纸面的墨线串起人物、物件与因果，让复杂道理变成轻巧的视觉隐喻。",
       "best_for": ["哲理隐喻", "关系变化", "因果讲解", "极简海报"],
       "avoid_for": ["写实群像", "材质展示", "需要丰富环境细节的场景"],
-      "recommend_keywords": ["关系", "因果", "选择", "循环", "连接", "寓意", "极简", "一条线", "隐喻"],
+      "recommend_keywords": ["关系", "因果", "选择", "循环", "连接", "寓意", "极简", "一条线", "隐喻", "relationship", "cause and effect", "choice", "cycle", "connection", "parable", "minimal", "continuous line", "visual metaphor"],
       "recipe": {
         "medium": "米白纸上的深墨连续线，搭配一处扁平水彩标记",
         "line": "主线尽量连续，粗细随情绪轻微变化，交叉处保持可辨识而非机械圆滑",
@@ -73,7 +73,7 @@
       "summary": "用半透明蜡彩层和纸上刮痕表现从窗户落进来的光，适合温暖、亲密又略带童真的室内故事。",
       "best_for": ["家庭相处", "亲子片段", "室内暖景", "微小善意"],
       "avoid_for": ["严肃数据图", "冷峻科技", "超大建筑全景"],
-      "recommend_keywords": ["家中", "窗边", "阳光", "亲子", "孩子", "厨房", "拥抱", "温暖", "陪伴", "善意"],
+      "recommend_keywords": ["家中", "窗边", "阳光", "亲子", "孩子", "厨房", "拥抱", "温暖", "陪伴", "善意", "family", "window", "sunlight", "parent and child", "kitchen", "hug", "warm interior", "companionship", "kindness"],
       "recipe": {
         "medium": "蜡质彩棒分层涂在暖白粗纹纸上，局部以硬物刮出窗光和细节",
         "line": "深褐或靛青蜡线松散定形，线条允许在转角处露出反复描画",
@@ -94,7 +94,7 @@
       "summary": "以旧票根、信纸、布纹和手撕色纸拼出记忆层次，让真实小物成为时间与地点的证据。",
       "best_for": ["旅行回忆", "成长时间线", "纪念主题", "多时空叙事"],
       "avoid_for": ["单一产品特写", "精确透视建筑", "需要纯净背景的角色设定"],
-      "recommend_keywords": ["旅行", "票根", "纪念", "成长", "多年", "相册", "过去", "时间线", "书信", "车票"],
+      "recommend_keywords": ["旅行", "票根", "纪念", "成长", "多年", "相册", "过去", "时间线", "书信", "车票", "travel", "ticket stub", "keepsake", "growing up", "years later", "photo album", "past", "timeline", "letter", "train ticket"],
       "recipe": {
         "medium": "手撕彩纸、旧信纸、棉布碎片、印章痕迹与少量彩铅共同组成实体拼贴",
         "line": "关键人物用简洁彩铅线补足，物件边缘由真实撕口和剪口决定",
@@ -115,7 +115,7 @@
       "summary": "让深色黑板成为夜幕，粉笔擦痕既是云雾也是舞台光，适合讲解、想象与带一点幽默的夜间故事。",
       "best_for": ["知识讲解", "睡前想象", "夜间场景", "步骤演示"],
       "avoid_for": ["细腻肤色肖像", "奢华商品广告", "要求纯白背景的内容"],
-      "recommend_keywords": ["黑板", "粉笔", "课堂", "讲解", "步骤", "星空", "夜晚", "睡前", "公式", "老师"],
+      "recommend_keywords": ["黑板", "粉笔", "课堂", "讲解", "步骤", "星空", "夜晚", "睡前", "公式", "老师", "blackboard", "chalk", "classroom", "explanation", "step by step", "starry sky", "nighttime", "bedtime", "formula", "teacher"],
       "recipe": {
         "medium": "深灰黑板上的白色与有限彩色粉笔，配合真实板擦雾和指腹抹痕",
         "line": "主轮廓由断续粉笔线叠画，辅助箭头和运动线更轻更细",
@@ -136,7 +136,7 @@
       "summary": "用哑黑纸面、旧金箔裂纹与克制剪影讲述哲理转折，画面庄重但不奢华。",
       "best_for": ["哲理故事", "传统智慧", "命运转折", "象征性场景"],
       "avoid_for": ["轻快亲子日常", "商品目录", "依赖丰富面部表情的对话"],
-      "recommend_keywords": ["哲理", "寓言", "智慧", "命运", "修行", "道家", "禅意", "因果", "黑金", "剪影", "山水"],
+      "recommend_keywords": ["哲理", "寓言", "智慧", "命运", "修行", "道家", "禅意", "因果", "黑金", "剪影", "山水", "philosophy", "parable", "traditional wisdom", "fate", "spiritual practice", "taoism", "zen", "cause and effect", "black and gold", "silhouette", "mountain landscape"],
       "recipe": {
         "medium": "哑黑手工纸上的旧金箔、金粉干刷与少量灰白炭笔，不使用金属三维渲染",
         "line": "人物和山形以不规则剪纸边缘定形，关键转折由一条细金线连接",
@@ -157,7 +157,7 @@
       "summary": "把场景拆成前景幕片、中景角色和后景天幕，以可见纸厚和投影构成温和的立体叙事。",
       "best_for": ["童话场景", "自然科普", "节庆故事", "空间层次"],
       "avoid_for": ["写实新闻现场", "复杂文字海报", "极小产品细节"],
-      "recommend_keywords": ["森林", "动物", "小鹿", "童话", "节日", "花园", "海底", "自然", "纸艺", "舞台", "立体"],
+      "recommend_keywords": ["森林", "动物", "小鹿", "童话", "节日", "花园", "海底", "自然", "纸艺", "舞台", "立体", "forest", "animal", "deer", "fairy tale", "festival", "garden", "underwater", "nature", "paper craft", "stage", "layered"],
       "recipe": {
         "medium": "染色卡纸、半透明硫酸纸与细纸绳搭成浅层实体舞台",
         "line": "造型依靠剪切轮廓，局部用铅笔压线和针孔补充，不使用统一描边",
@@ -178,7 +178,7 @@
       "summary": "像在方格练习本上边想边画，以编号分镜、箭头和局部彩色标记拆解过程。",
       "best_for": ["教程步骤", "知识分解", "前后对比", "流程说明"],
       "avoid_for": ["沉浸式风景", "庄重纪念画面", "高端品牌主视觉"],
-      "recommend_keywords": ["教程", "怎么做", "步骤", "流程", "科普", "对比", "解释", "方法", "拆解", "分镜"],
+      "recommend_keywords": ["教程", "怎么做", "步骤", "流程", "科普", "对比", "解释", "方法", "拆解", "分镜", "tutorial", "how to", "step by step", "workflow", "science explainer", "comparison", "explain", "method", "breakdown", "storyboard"],
       "recipe": {
         "medium": "浅灰方格练习纸上的自动铅笔、红蓝木铅笔与少量荧光笔平涂",
         "line": "线条快速但信息明确，错误尝试可留淡痕，关键轮廓用第二遍铅笔加深",
@@ -199,7 +199,7 @@
       "summary": "将完整故事压缩成一张手绘邮片：主体清晰、环境够用、颜色亲切，并留下一处可记住的细节。",
       "best_for": ["通用故事场景", "人物与地点", "温暖短故事", "未指定风格的需求"],
       "avoid_for": ["精密技术图", "恐怖重口场景", "超复杂多步骤说明"],
-      "recommend_keywords": ["故事", "相遇", "朋友", "帮助", "希望", "温柔", "风景", "小镇", "散步", "微笑"],
+      "recommend_keywords": ["故事", "相遇", "朋友", "帮助", "希望", "温柔", "风景", "小镇", "散步", "微笑", "story", "encounter", "friendship", "helping", "hope", "gentle", "landscape", "small town", "walking", "smile"],
       "recipe": {
         "medium": "不透明彩铅与薄水彩共同画在轻微泛白的厚卡纸上",
         "line": "深灰彩铅轮廓时断时续，近景较实、远景自然消失在色块里",
