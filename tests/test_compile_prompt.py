@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import subprocess
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -64,6 +65,34 @@ class CompilationTests(unittest.TestCase):
         self.assertIn("公交站", selected["matched_keywords"])
         self.assertIn("雨夜使用街灯、站灯与湿地反光", package["prompt"])
         self.assertNotIn("生活化的晨光或傍晚斜光", package["prompt"])
+
+    def test_english_subjects_recommend_each_catalog_style(self) -> None:
+        cases = {
+            "graphite-moment": "A quiet graphite diary about memories and farewell",
+            "street-corner-gouache": "Neighbors wait at a bus stop on a rainy city street",
+            "single-line-fable": "A continuous line visual metaphor about a difficult choice",
+            "windowlight-wax": "A family shares a hug in a kitchen lit by window sunlight",
+            "ticket-stub-collage": "A travel timeline assembled from ticket stubs and letters",
+            "midnight-chalk-stage": "A teacher draws a formula in chalk on a blackboard",
+            "black-gold-parable": "A black and gold silhouette about traditional wisdom",
+            "layered-paper-theatre": "A paper craft forest stage with a deer",
+            "notebook-explainer": "A tutorial storyboard explains a workflow step by step",
+            "postcard-storybook": "A gentle story about friendship and hope in a small town",
+        }
+        for expected, subject in cases.items():
+            with self.subTest(expected=expected):
+                package = compile_prompt.compile_package(self.catalog, subject=subject)
+                self.assertEqual(package["selected_style"]["slug"], expected)
+                self.assertEqual(package["selected_style"]["selection_mode"], "automatic")
+
+    def test_english_keywords_do_not_match_inside_longer_words(self) -> None:
+        package = compile_prompt.compile_package(
+            self.catalog,
+            subject="A lettering study with a storyboard layout",
+        )
+        self.assertEqual(package["selected_style"]["slug"], "notebook-explainer")
+        self.assertNotIn("letter", package["selected_style"]["matched_keywords"])
+        self.assertNotIn("story", package["selected_style"]["matched_keywords"])
 
     def test_no_keyword_uses_declared_fallback(self) -> None:
         package = compile_prompt.compile_package(
@@ -136,6 +165,16 @@ class CompilationTests(unittest.TestCase):
 
 
 class CliTests(unittest.TestCase):
+    def run_with_catalog(self, catalog_path: Path) -> subprocess.CompletedProcess[str]:
+        command = [
+            sys.executable,
+            str(SKILL_ROOT / "scripts" / "compile_prompt.py"),
+            "--catalog",
+            str(catalog_path),
+            "--list-styles",
+        ]
+        return subprocess.run(command, capture_output=True, text=True)
+
     def test_json_cli_output_is_parseable(self) -> None:
         command = [
             sys.executable,
@@ -162,6 +201,39 @@ class CliTests(unittest.TestCase):
         result = subprocess.run(command, check=True, capture_output=True, text=True)
         rows = json.loads(result.stdout)
         self.assertEqual(len(rows), 10)
+
+    def test_unreadable_custom_catalog_reports_clean_error(self) -> None:
+        with tempfile.TemporaryDirectory() as catalog_directory:
+            result = self.run_with_catalog(Path(catalog_directory))
+        self.assertEqual(result.returncode, 2)
+        self.assertIn("cannot read catalog", result.stderr)
+        self.assertNotIn("Traceback", result.stderr)
+
+    def test_missing_custom_catalog_reports_clean_error(self) -> None:
+        with tempfile.TemporaryDirectory() as catalog_directory:
+            catalog_path = Path(catalog_directory) / "missing.json"
+            result = self.run_with_catalog(catalog_path)
+        self.assertEqual(result.returncode, 2)
+        self.assertIn("catalog not found", result.stderr)
+        self.assertNotIn("Traceback", result.stderr)
+
+    def test_non_utf8_custom_catalog_reports_clean_error(self) -> None:
+        with tempfile.TemporaryDirectory() as catalog_directory:
+            catalog_path = Path(catalog_directory) / "styles.json"
+            catalog_path.write_bytes(b"\xff\xfe\x00")
+            result = self.run_with_catalog(catalog_path)
+        self.assertEqual(result.returncode, 2)
+        self.assertIn("catalog is not valid UTF-8", result.stderr)
+        self.assertNotIn("Traceback", result.stderr)
+
+    def test_invalid_json_custom_catalog_reports_clean_error(self) -> None:
+        with tempfile.TemporaryDirectory() as catalog_directory:
+            catalog_path = Path(catalog_directory) / "styles.json"
+            catalog_path.write_text("{not-json", encoding="utf-8")
+            result = self.run_with_catalog(catalog_path)
+        self.assertEqual(result.returncode, 2)
+        self.assertIn("invalid JSON", result.stderr)
+        self.assertNotIn("Traceback", result.stderr)
 
 
 if __name__ == "__main__":
