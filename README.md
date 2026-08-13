@@ -6,7 +6,7 @@ The Skill is model-agnostic and does not imitate specific artists, studios, or p
 
 ## Key Features
 
-- Automatically recommends a handmade visual style based on the story, with support for manual selection.
+- Automatically recommends a handmade visual style from Chinese or English story descriptions, with support for manual selection.
 - Includes 10 independently designed style recipes covering graphite, gouache, collage, chalk, wax crayon, and layered paper.
 - Preserves required on-image text exactly, without translating, polishing, or changing punctuation.
 - Locks character appearance, clothing, props, colors, and scene rules across a visual series.
@@ -112,6 +112,7 @@ The JSON output format is defined in [`references/output-schema.json`](reference
 
 ```text
 handmade-story-visuals/
+|-- .github/workflows/tests.yml    # Automatic unit tests
 |-- README.md                      # Project overview, installation, and usage
 |-- SKILL.md                       # Skill entry point and core workflow
 |-- agents/openai.yaml             # Codex interface metadata
@@ -131,7 +132,7 @@ The project uses only the Python standard library. Run the test suite with:
 python3 -m unittest discover -s tests -v
 ```
 
-The tests cover style parsing, automatic recommendations, default fallback behavior, exact text preservation, no-text constraints, continuity locks, output structure, and command-line behavior.
+The same suite runs automatically on every push and pull request. It covers style parsing, Chinese and English automatic recommendations, default fallback behavior, exact text preservation, no-text constraints, continuity locks, output structure, custom-catalog errors, and command-line behavior.
 
 ## Design Principles
 
