@@ -15,7 +15,7 @@ Do not infer new visible text. When no text is supplied, default to a text-free 
 
 ## 2. Select One Style
 
-Honor a valid style ID, slug, Chinese name, or alias. For `auto`, score the subject and narrative focus against `recommend_keywords` in `styles.json`. Give concrete subject signals more weight than generic intent words so a location, medium, or event is not displaced by broad emotional language. The compiler returns matched keywords so the choice remains inspectable.
+Honor a valid style ID, slug, Chinese name, or alias. For `auto`, score Chinese or English subject and narrative-focus text against `recommend_keywords` in `styles.json`. Match Latin-script keywords as complete words or phrases so short terms do not fire inside longer words. Give concrete subject signals more weight than generic intent words so a location, medium, or event is not displaced by broad emotional language. The compiler returns matched keywords so the choice remains inspectable.
 
 When no keyword matches, use the catalog's `default_style`. Change the selected style only when the user's priorities conflict with its `avoid_for` guidance. Explain that conflict briefly instead of silently blending styles.
 
