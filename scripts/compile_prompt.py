@@ -126,9 +126,15 @@ def validate_catalog(catalog: Any) -> dict[str, Any]:
 def load_catalog(path: Path | str = DEFAULT_CATALOG) -> dict[str, Any]:
     catalog_path = Path(path)
     try:
-        payload = json.loads(catalog_path.read_text(encoding="utf-8"))
+        source = catalog_path.read_text(encoding="utf-8")
     except FileNotFoundError as exc:
         raise CatalogError(f"catalog not found: {catalog_path}") from exc
+    except UnicodeDecodeError as exc:
+        raise CatalogError(f"catalog is not valid UTF-8: {catalog_path}") from exc
+    except OSError as exc:
+        raise CatalogError(f"cannot read catalog {catalog_path}: {exc}") from exc
+    try:
+        payload = json.loads(source)
     except json.JSONDecodeError as exc:
         raise CatalogError(f"invalid JSON in {catalog_path}: {exc}") from exc
     return validate_catalog(payload)
@@ -150,6 +156,15 @@ def resolve_style(catalog: dict[str, Any], query: str) -> dict[str, Any]:
     raise ValueError(f"unknown style {query!r}; choose one of: {valid}")
 
 
+def _contains_keyword(text: str, keyword: str) -> bool:
+    folded_text = text.casefold()
+    folded_keyword = keyword.casefold()
+    if re.search(r"[a-z0-9]", folded_keyword):
+        pattern = rf"(?<![a-z0-9]){re.escape(folded_keyword)}(?![a-z0-9])"
+        return re.search(pattern, folded_text) is not None
+    return folded_keyword in folded_text
+
+
 def recommend_style(
     catalog: dict[str, Any], subject: str, intent: str = ""
 ) -> tuple[dict[str, Any], list[str], str]:
@@ -160,12 +175,12 @@ def recommend_style(
         subject_hits = [
             keyword
             for keyword in style["recommend_keywords"]
-            if keyword.casefold() in subject_text
+            if _contains_keyword(subject_text, keyword)
         ]
         intent_hits = [
             keyword
             for keyword in style["recommend_keywords"]
-            if keyword.casefold() in intent_text and keyword not in subject_hits
+            if _contains_keyword(intent_text, keyword) and keyword not in subject_hits
         ]
         hits = [*subject_hits, *intent_hits]
         score = len(subject_hits) * SUBJECT_KEYWORD_WEIGHT + len(intent_hits)
